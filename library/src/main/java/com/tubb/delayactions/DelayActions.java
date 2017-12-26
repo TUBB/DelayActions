@@ -34,6 +34,7 @@ public final class DelayActions {
      * @return ActionUnit
      */
     public ActionUnit createActionUnit(CoreAction coreAction) {
+        checkNotNull(coreAction);
         return DefaultActionUnit.create(coreAction);
     }
 

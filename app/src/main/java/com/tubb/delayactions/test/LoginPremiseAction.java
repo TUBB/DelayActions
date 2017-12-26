@@ -15,14 +15,14 @@ import io.reactivex.ObservableOnSubscribe;
  */
 
 public class LoginPremiseAction implements PremiseAction {
-    Activity mContext;
+    private Activity mContext;
     public LoginPremiseAction(Activity context) {
         mContext = context;
     }
 
     @Override
     public boolean isPremiseCheckAsync() {
-        return false;
+        return true;
     }
 
     @NonNull

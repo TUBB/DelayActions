@@ -1,5 +1,6 @@
 package com.tubb.delayactions;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,13 +20,12 @@ class ActionUnitDispatcher {
 
     void loop() {
         for (final ActionUnit actionUnit : actionUnitList) {
-            actionUnit
-                    .checkAllPremiseActions()
+            actionUnit.checkAllPremiseActions()
                     .observeOn(SchedulerProvider.ui())
                     .subscribe(new Consumer<Boolean>() {
                         @Override
                         public void accept(Boolean finished) throws Exception {
-                            // is these code run in for loop?
+                            // is these code run in for loop? we can remove item?
                             handleActionUnit(actionUnit);
                         }
                     });

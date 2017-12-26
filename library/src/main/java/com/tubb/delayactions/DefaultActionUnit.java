@@ -28,7 +28,6 @@ final class DefaultActionUnit implements ActionUnit {
     }
 
     static DefaultActionUnit create(CoreAction coreAction) {
-        checkNotNull(coreAction);
         return new DefaultActionUnit(coreAction);
     }
 
@@ -44,7 +43,6 @@ final class DefaultActionUnit implements ActionUnit {
 
     @Override
     public ActionUnit addPremiseAction(PremiseAction premiseAction) {
-        checkNotNull(premiseAction);
         premiseActions.add(premiseAction);
         return this;
     }
