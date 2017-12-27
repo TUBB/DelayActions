@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 2
-        versionName "0.0.2"
+        versionCode 3
+        versionName "0.0.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -38,7 +38,7 @@ publish {
     userOrg = 'tubb'
     groupId = 'com.tubb.delayactions'
     artifactId = 'delayactions'
-    publishVersion = '0.0.2'
+    publishVersion = '0.0.3'
     desc = 'Abstract delay actions'
     website = 'https://github.com/TUBB/DelayActions'
 }

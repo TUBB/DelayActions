@@ -19,7 +19,7 @@ DelayActions
 ### 添加依赖
 ```groovy
 dependencies {
-    api 'com.tubb.delayactions:delayactions:0.0.2'
+    api 'com.tubb.delayactions:delayactions:0.0.3'
 }
 ```
 
@@ -91,7 +91,32 @@ DelayActions.instance().post(unit);
 ```java
 UserInfoCache.setLogin(this, true);
 DelayActions.instance().notifyLoop(); // 通知框架重新检测
-finish();
+```
+
+### 监听[CoreAction][4]和[PremiseAction][5]的状态
+```java
+mListener = new ActionUnitListener(){
+
+    @Override
+    public void onStart() {
+        Log.d(TAG, "ActionUnit onStart");
+    }
+
+    @Override
+    public void onFinish() {
+        Log.d(TAG, "ActionUnit onFinish");
+    }
+};
+DelayActions.instance().registerActionUnitListener(OrderDetailCoreAction.class, mListener);
+```
+```java
+mListener = new PremiseActionListener() {
+    @Override
+    public void onFinish() {
+        finish();
+    }
+};
+DelayActions.instance().registerPremiseActionFinishedListener(LoginPremiseAction.class, mListener);
 ```
 
 详细使用请参照[Demo][7]工程，强烈建议clone下来看一看，听说可以节省一局农药的时间

@@ -11,6 +11,7 @@ import com.tubb.delayactions.CoreAction;
 import com.tubb.delayactions.DelayActions;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "delayactions";
     private ActionUnitListener mListener;
 
     @Override
@@ -21,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStart() {
-                Log.d("delayactions", "onStart");
+                Log.d(TAG, "ActionUnit onStart");
             }
 
             @Override
             public void onFinish() {
-                Log.d("delayactions", "onFinish");
+                Log.d(TAG, "ActionUnit onFinish");
             }
         };
         DelayActions.instance().registerActionUnitListener(OrderDetailCoreAction.class, mListener);
