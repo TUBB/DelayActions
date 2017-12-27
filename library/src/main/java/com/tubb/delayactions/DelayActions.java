@@ -1,5 +1,8 @@
 package com.tubb.delayactions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.tubb.delayactions.EmptyUtils.checkNotNull;
 
 /**
@@ -10,6 +13,8 @@ import static com.tubb.delayactions.EmptyUtils.checkNotNull;
 public final class DelayActions {
     private final static DelayActions INSTANCE = new DelayActions();
     private ActionUnitDispatcher mDispatcher;
+    private Map<Class<? extends PremiseAction>, PremiseActionListener> mPaListenerMap = new HashMap<>(2);
+    private Map<Class<? extends CoreAction>, ActionUnitListener> mAuListenerMap = new HashMap<>(2);
 
     private DelayActions() {
         mDispatcher = new ActionUnitDispatcher();
@@ -23,8 +28,13 @@ public final class DelayActions {
      * Dispatch the ActionUnit
      * @param unit ActionUnit
      */
-    public void post(ActionUnit unit) {
+    public synchronized void post(ActionUnit unit) {
         checkNotNull(unit);
+        if (mDispatcher.getActionUnitList().contains(unit)) return;
+        ActionUnitListener listener = mAuListenerMap.get(unit.getCoreAction().getClass());
+        if (!EmptyUtils.isNull(listener)) {
+            listener.onStart();
+        }
         mDispatcher.dispatch(unit);
     }
 
@@ -33,7 +43,7 @@ public final class DelayActions {
      * @param coreAction the target action
      * @return ActionUnit
      */
-    public ActionUnit createActionUnit(CoreAction coreAction) {
+    public synchronized ActionUnit createActionUnit(CoreAction coreAction) {
         checkNotNull(coreAction);
         return DefaultActionUnit.create(coreAction);
     }
@@ -41,7 +51,59 @@ public final class DelayActions {
     /**
      * Notify next premise action check
      */
-    public void notifyLoop() {
+    public synchronized void notifyLoop() {
         mDispatcher.loop();
+    }
+
+    public synchronized void registerPremiseActionFinishedListener(Class<? extends PremiseAction> clazz,
+                                                      PremiseActionListener listener) {
+        checkNotNull(clazz);
+        checkNotNull(listener);
+        if (mPaListenerMap.containsKey(clazz)) {
+            PremiseActionListener oldListener = mPaListenerMap.get(clazz);
+            if (oldListener != listener) {
+                // just update
+                mPaListenerMap.put(clazz, listener);
+            }
+        } else {
+            mPaListenerMap.put(clazz, listener);
+        }
+    }
+
+    public synchronized void unregisterPremiseActionFinishedListener(Class<? extends PremiseAction> clazz,
+                                                      PremiseActionListener listener) {
+        checkNotNull(clazz);
+        checkNotNull(listener);
+        mPaListenerMap.remove(clazz);
+    }
+
+    public synchronized void registerActionUnitListener(Class<? extends CoreAction> clazz,
+                                                                   ActionUnitListener listener) {
+        checkNotNull(clazz);
+        checkNotNull(listener);
+        if (mAuListenerMap.containsKey(clazz)) {
+            ActionUnitListener oldListener = mAuListenerMap.get(clazz);
+            if (oldListener != listener) {
+                // just update
+                mAuListenerMap.put(clazz, listener);
+            }
+        } else {
+            mAuListenerMap.put(clazz, listener);
+        }
+    }
+
+    public synchronized void unregisterActionUnitListener(Class<? extends CoreAction> clazz,
+                                                          ActionUnitListener listener) {
+        checkNotNull(clazz);
+        checkNotNull(listener);
+        mAuListenerMap.remove(clazz);
+    }
+
+    Map<Class<? extends PremiseAction>, PremiseActionListener> getPaListenerMap() {
+        return mPaListenerMap;
+    }
+
+    Map<Class<? extends CoreAction>, ActionUnitListener> getAuListenerMap() {
+        return mAuListenerMap;
     }
 }

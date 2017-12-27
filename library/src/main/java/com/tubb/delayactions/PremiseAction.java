@@ -17,7 +17,7 @@ public interface PremiseAction {
     boolean isPremiseCheckAsync();
 
     /**
-     * The premise action finished or not
+     * The premise action onFinish or not
      * @return RxJava
      */
     @NonNull

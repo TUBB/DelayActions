@@ -13,7 +13,6 @@ DelayActions
  * `前提条件`检测异步化，再也不用担心`UI Thread`卡卡卡了
  * 多个`前提条件行为`串行执行
 
-
 使用
 =====
 
@@ -58,7 +57,7 @@ public class LoginPremiseAction implements PremiseAction {
 
     @NonNull
     @Override
-    public Observable<Boolean> finished() {
+    public Observable<Boolean> onFinish() {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> e) throws Exception {
@@ -73,8 +72,8 @@ public class LoginPremiseAction implements PremiseAction {
     }
 }
 ```
-[PremiseAction][5]接口一共定义了三个接口方法，`PremiseAction.finished()`方法用来检测前提条件是否满足了，返回值为[RxJava][6]中的`Observable<Boolean>`。
-`PremiseAction.isPremiseCheckAsync()`方法用来判定`PremiseAction.finished()`方法的调用是否为异步。
+[PremiseAction][5]接口一共定义了三个接口方法，`PremiseAction.onFinish()`方法用来检测前提条件是否满足了，返回值为[RxJava][6]中的`Observable<Boolean>`。
+`PremiseAction.isPremiseCheckAsync()`方法用来判定`PremiseAction.onFinish()`方法的调用是否为异步。
 `PremiseAction.execute()`方法定义`前提条件行为`具体的操作（需要用户参与），比如登录。
 
 ### 执行`目标行为`

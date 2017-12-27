@@ -1,6 +1,5 @@
 package com.tubb.delayactions;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,12 +33,22 @@ class ActionUnitDispatcher {
 
     private void handleActionUnit(ActionUnit actionUnit) {
         List<PremiseAction> premiseActions = actionUnit.getPremiseActions();
-        if (premiseActions.size() == 0) { // all premise actions finished
+        if (premiseActions.size() == 0) { // all premise actions onFinish
+            ActionUnitListener listener = DelayActions.instance()
+                    .getAuListenerMap()
+                    .get(actionUnit.getCoreAction().getClass());
+            if (!EmptyUtils.isNull(listener)) {
+                listener.onFinish();
+            }
             actionUnitList.remove(actionUnit);
             actionUnit.getCoreAction().execute();
         } else {
             PremiseAction premiseAction = premiseActions.get(0);
             premiseAction.execute();
         }
+    }
+
+    List<ActionUnit> getActionUnitList() {
+        return actionUnitList;
     }
 }

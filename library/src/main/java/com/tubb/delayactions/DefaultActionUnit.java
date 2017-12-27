@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -77,7 +78,10 @@ final class DefaultActionUnit implements ActionUnit {
             chainObservable = chainObservable.doOnNext(new Consumer<Boolean>() {
                 @Override
                 public void accept(Boolean finished) throws Exception {
-                    if (finished) premiseActions.remove(lastPremiseAction);
+                    if (finished) {
+                        notifyPremiseActionFinishedListener(lastPremiseAction);
+                        premiseActions.remove(lastPremiseAction);
+                    }
                 }
             });
             if (lastPremiseAction.isPremiseCheckAsync()) {
@@ -87,6 +91,14 @@ final class DefaultActionUnit implements ActionUnit {
             }
         }
         return chainObservable;
+    }
+
+    private void notifyPremiseActionFinishedListener(PremiseAction premiseAction) {
+        Map<Class<? extends PremiseAction>, PremiseActionListener> pafListenerMap = DelayActions.instance().getPaListenerMap();
+        PremiseActionListener listener = pafListenerMap.get(premiseAction.getClass());
+        if (!EmptyUtils.isNull(listener)) {
+            listener.onFinish();
+        }
     }
 
     @NonNull
@@ -104,7 +116,10 @@ final class DefaultActionUnit implements ActionUnit {
     private ObservableSource<Boolean> flatPremiseAction(Boolean finished, PremiseAction premiseAction) {
         int preIndex = premiseActions.indexOf(premiseAction) - 1;
         if (preIndex >= 0) {
-            if (finished) premiseActions.remove(preIndex);
+            if (finished) {
+                notifyPremiseActionFinishedListener(premiseActions.get(preIndex));
+                premiseActions.remove(preIndex);
+            }
         }
         return getFinishedObservable(premiseAction);
     }
