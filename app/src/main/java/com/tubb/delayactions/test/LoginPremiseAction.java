@@ -31,7 +31,8 @@ public class LoginPremiseAction implements PremiseAction {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> e) throws Exception {
-                e.onNext(UserInfoCache.isLogin(mContext));
+                boolean isLogin = UserInfoCache.isLogin(mContext);
+                e.onNext(isLogin);
             }
         });
     }

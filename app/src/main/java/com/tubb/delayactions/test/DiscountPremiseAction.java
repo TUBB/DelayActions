@@ -31,7 +31,8 @@ public class DiscountPremiseAction implements PremiseAction {
         return Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> e) throws Exception {
-                e.onNext(UserInfoCache.isHasDiscount(mContext));
+                boolean isHasDiscount = UserInfoCache.isHasDiscount(mContext);
+                e.onNext(isHasDiscount);
             }
         });
     }

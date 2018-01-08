@@ -9,7 +9,7 @@ DelayActions
 特性
 ======== 
  
- * 抽象出`目标行为`和`前提条件行为`，从`复杂`到`简单`就这么简单
+ * 抽象出`目标行为`和`前提条件行为`，从`繁琐`到`爽`就这么简单
  * `前提条件`检测异步化，再也不用担心`UI Thread`卡卡卡了
  * 多个`前提条件行为`串行执行
 
@@ -19,7 +19,7 @@ DelayActions
 ### 添加依赖
 ```groovy
 dependencies {
-    api 'com.tubb.delayactions:delayactions:0.0.3'
+    api 'com.tubb.delayactions:delayactions:0.0.4'
 }
 ```
 

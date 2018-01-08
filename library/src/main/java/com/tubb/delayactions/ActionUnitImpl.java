@@ -19,17 +19,17 @@ import static com.tubb.delayactions.EmptyUtils.isNull;
  * Created by tubingbing on 2017/12/16.
  */
 
-final class DefaultActionUnit implements ActionUnit {
+final class ActionUnitImpl implements ActionUnit {
 
     private CoreAction coreAction;
     private List<PremiseAction> premiseActions = new LinkedList<>();
 
-    private DefaultActionUnit(CoreAction coreAction) {
+    private ActionUnitImpl(CoreAction coreAction) {
         this.coreAction = coreAction;
     }
 
-    static DefaultActionUnit create(CoreAction coreAction) {
-        return new DefaultActionUnit(coreAction);
+    static ActionUnitImpl create(CoreAction coreAction) {
+        return new ActionUnitImpl(coreAction);
     }
 
     @Override

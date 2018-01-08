@@ -45,7 +45,7 @@ public final class DelayActions {
      */
     public synchronized ActionUnit createActionUnit(CoreAction coreAction) {
         checkNotNull(coreAction);
-        return DefaultActionUnit.create(coreAction);
+        return ActionUnitImpl.create(coreAction);
     }
 
     /**
