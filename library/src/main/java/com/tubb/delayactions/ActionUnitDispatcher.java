@@ -3,6 +3,7 @@ package com.tubb.delayactions;
 import java.util.LinkedList;
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -19,8 +20,9 @@ class ActionUnitDispatcher {
 
     void loop() {
         for (final ActionUnit actionUnit : actionUnitList) {
-            actionUnit.checkAllPremiseActions()
-                    .observeOn(SchedulerProvider.ui())
+            Observable<Boolean> chainObservable = actionUnit.checkAllPremiseActions();
+            if (EmptyUtils.isNull(chainObservable)) continue;
+            chainObservable.observeOn(SchedulerProvider.ui())
                     .subscribe(new Consumer<Boolean>() {
                         @Override
                         public void accept(Boolean finished) throws Exception {

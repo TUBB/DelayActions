@@ -1,5 +1,8 @@
 package com.tubb.delayactions;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -10,11 +13,15 @@ import io.reactivex.Observable;
  */
 
 public interface ActionUnit {
+    @NonNull
     CoreAction getCoreAction();
 
+    @Nullable
     List<PremiseAction> getPremiseActions();
 
+    @NonNull
     ActionUnit addPremiseAction(PremiseAction premiseAction);
 
+    @Nullable
     Observable<Boolean> checkAllPremiseActions();
 }

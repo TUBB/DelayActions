@@ -1,6 +1,7 @@
 package com.tubb.delayactions;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +33,7 @@ final class ActionUnitImpl implements ActionUnit {
         return new ActionUnitImpl(coreAction);
     }
 
+    @NonNull
     @Override
     public CoreAction getCoreAction() {
         return coreAction;
@@ -42,12 +44,14 @@ final class ActionUnitImpl implements ActionUnit {
         return premiseActions;
     }
 
+    @NonNull
     @Override
     public ActionUnit addPremiseAction(PremiseAction premiseAction) {
         premiseActions.add(premiseAction);
         return this;
     }
 
+    @Nullable
     @Override
     public Observable<Boolean> checkAllPremiseActions() {
         Observable<Boolean> chainObservable = null;
