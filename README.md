@@ -13,13 +13,17 @@ DelayActions
  * `前提条件`检测异步化，再也不用担心`UI Thread`卡卡卡了
  * 多个`前提条件行为`串行执行
 
+预览
+=======
+![DEMO](https://github.com/TUBB/DelayActions/blob/master/art/demo.gif)
+
 使用
 =====
 
 ### 添加依赖
 ```groovy
 dependencies {
-    api 'com.tubb.delayactions:delayactions:0.0.4'
+    api 'com.tubb.delayactions:delayactions:0.0.5'
 }
 ```
 
@@ -121,7 +125,7 @@ DelayActions.instance().registerPremiseActionFinishedListener(LoginPremiseAction
 
 详细使用请参照[Demo][7]工程，强烈建议clone下来看一看，听说可以节省一局农药的时间
 
-巨人的肩膀
+灵感来源
 =========
 
 Inspired by [jinyb09017/delayActionDemo][1]
