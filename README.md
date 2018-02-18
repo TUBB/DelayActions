@@ -123,7 +123,7 @@ mListener = new PremiseActionListener() {
 DelayActions.instance().registerPremiseActionFinishedListener(LoginPremiseAction.class, mListener);
 ```
 
-详细使用请参照[Demo][7]工程，强烈建议clone下来看一看，听说可以节省一局农药的时间
+详细使用请参照[Demo][7]工程，强烈建议clone下来看一看!
 
 灵感来源
 =========

@@ -16,7 +16,7 @@ import static com.tubb.delayactions.EmptyUtils.checkNotNull;
 import static com.tubb.delayactions.EmptyUtils.isNull;
 
 /**
- * The core action call unit
+ * The core action call unit default impl
  * Created by tubingbing on 2017/12/16.
  */
 
@@ -39,6 +39,7 @@ final class ActionUnitImpl implements ActionUnit {
         return coreAction;
     }
 
+    @NonNull
     @Override
     public List<PremiseAction> getPremiseActions() {
         return premiseActions;

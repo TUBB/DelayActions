@@ -16,7 +16,7 @@ public interface ActionUnit {
     @NonNull
     CoreAction getCoreAction();
 
-    @Nullable
+    @NonNull
     List<PremiseAction> getPremiseActions();
 
     @NonNull

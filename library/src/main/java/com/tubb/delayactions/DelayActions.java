@@ -49,7 +49,7 @@ public final class DelayActions {
     }
 
     /**
-     * Notify next premise action check
+     * Notify next premise action start checking
      */
     public synchronized void notifyLoop() {
         mDispatcher.loop();
