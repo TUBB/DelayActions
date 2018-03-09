@@ -1,5 +1,7 @@
 DelayActions
-=========
+============
+![](https://img.shields.io/badge/minSdkVersion-14-brightgreen.svg) ![](https://img.shields.io/badge/release-v0.0.6-brightgreen.svg) [![](https://img.shields.io/badge/license-Apache%202-lightgrey.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 执行某个操作时需要满足一些前提条件，而这些前提条件需要`用户参与`才能满足。
 比如进入`个人资料界面`的前提是要先`登录`，而登录这个操作需要用户的参与才能完成。
 平常的做法可能是利用事件通知机制（[EventBus][2])、[BroadcastReceiver][3]和[startActivityForResult()][8]，把`登录成功`这个事件告知前面的代码可以跳到`个人资料界面`了。
@@ -23,7 +25,7 @@ DelayActions
 ### 添加依赖
 ```groovy
 dependencies {
-    api 'com.tubb.delayactions:delayactions:0.0.5'
+    api 'com.tubb.delayactions:delayactions:0.0.6'
 }
 ```
 

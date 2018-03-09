@@ -11,7 +11,7 @@ import io.reactivex.Observable;
 
 public interface PremiseAction {
     /**
-     * If the action premise checking is async
+     * The action premise checking is async or sync
      * @return sync or async
      */
     boolean isPremiseCheckAsync();

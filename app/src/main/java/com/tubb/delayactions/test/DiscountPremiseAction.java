@@ -22,7 +22,7 @@ public class DiscountPremiseAction implements PremiseAction {
 
     @Override
     public boolean isPremiseCheckAsync() {
-        return true;
+        return false;
     }
 
     @NonNull

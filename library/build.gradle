@@ -3,13 +3,13 @@ apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    buildToolsVersion "27.0.2"
 
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 5
-        versionName "0.0.5"
+        versionCode 6
+        versionName "0.0.6"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -24,7 +24,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     androidTestApi('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -38,7 +38,7 @@ publish {
     userOrg = 'tubb'
     groupId = 'com.tubb.delayactions'
     artifactId = 'delayactions'
-    publishVersion = '0.0.5'
+    publishVersion = '0.0.6'
     desc = 'Abstract delay actions'
     website = 'https://github.com/TUBB/DelayActions'
 }

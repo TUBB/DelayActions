@@ -12,6 +12,8 @@ import android.util.Log;
  */
 
 public class App extends Application implements LifecycleObserver {
+    final static String TAG = "delayactions";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -20,11 +22,11 @@ public class App extends Application implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onAppForeground() {
-        Log.d("delayactions", "Foreground");
+        Log.d(TAG, "APP to Foreground");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onAppBackground() {
-        Log.d("delayactions", "Background");
+        Log.d(TAG, "APP to Background");
     }
 }

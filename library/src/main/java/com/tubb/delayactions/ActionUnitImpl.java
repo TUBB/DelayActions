@@ -16,7 +16,7 @@ import static com.tubb.delayactions.EmptyUtils.checkNotNull;
 import static com.tubb.delayactions.EmptyUtils.isNull;
 
 /**
- * The core action call unit default impl
+ * The core action call unit, the default impl
  * Created by tubingbing on 2017/12/16.
  */
 
